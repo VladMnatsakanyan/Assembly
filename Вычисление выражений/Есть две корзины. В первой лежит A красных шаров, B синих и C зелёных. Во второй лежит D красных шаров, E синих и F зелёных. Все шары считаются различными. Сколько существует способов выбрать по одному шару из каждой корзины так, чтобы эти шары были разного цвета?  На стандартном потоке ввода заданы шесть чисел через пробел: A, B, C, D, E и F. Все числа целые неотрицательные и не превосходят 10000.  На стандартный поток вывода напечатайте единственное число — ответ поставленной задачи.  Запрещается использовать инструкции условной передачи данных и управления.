@@ -1,0 +1,34 @@
+%include "io.inc"
+section .bss
+A resd 1
+B resd 1
+C resd 1
+D resd 1
+E resd 1
+F resd 1
+section .text
+global main
+main:
+    GET_DEC 4, A
+    GET_DEC 4, B
+    GET_DEC 4, C
+    GET_DEC 4, D
+    GET_DEC 4, E
+    GET_DEC 4, F
+    mov ebx, dword[A]
+    mov edx, dword[B]
+    mov eax, dword[E]
+    mov ecx, dword[D]
+    add eax, dword[F]    
+    imul ebx, eax      
+    add ecx, dword[F]   
+    imul edx, ecx   
+    add ebx, edx   
+    mov eax, dword[C]
+    mov ecx, dword[E]
+    add ecx, dword[D]
+    imul eax, ecx
+    add ebx, eax
+    PRINT_DEC 4, ebx
+    xor eax, eax 
+    ret
