@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main(void) {
+    unsigned int x;
+    scanf("%u", &x);
+
+    unsigned int masks[5] = {
+        0x0000FFFF,
+        0x00FF00FF,
+        0x0F0F0F0F,
+        0x33333333,
+        0x55555555
+    };
+
+    int shift = 1;
+
+    for (int i = 4; i >= 0; i--) {
+        unsigned int m = masks[i];
+        unsigned int notm = ~m;
+        unsigned int a = x & m;
+        unsigned int b = x & notm;
+        x = (a << shift) | (b >> shift);
+        shift <<= 1;
+    }
+
+    printf("%u\n", x);
+
+    return 0;
+}
