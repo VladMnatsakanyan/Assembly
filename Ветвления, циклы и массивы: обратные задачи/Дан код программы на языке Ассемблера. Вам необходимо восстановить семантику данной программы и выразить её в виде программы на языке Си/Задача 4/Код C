@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main(void) {
+    unsigned int x;
+    unsigned int min = 0xFFFFFFFF;
+    while (1) {
+        scanf("%u", &x);
+
+        if (x == 0)
+            break;
+
+        if (x < min)
+            min = x;
+    }
+
+    printf("%u\n", min);
+
+    return 0;
+}
