@@ -1,0 +1,27 @@
+%include "io.inc"
+
+section .bss
+a resb 1
+b resb 1
+c resb 1
+d resb 1
+section .text
+global main
+main:
+    GET_DEC 1, a
+    GET_DEC 1, b
+    GET_DEC 1, c
+    GET_DEC 1, d
+    movzx eax, byte[a]
+    movzx ebx, byte[b]
+    shl ebx, 8 
+    or eax, ebx
+    movzx ebx, byte[c]
+    shl ebx, 16      
+    or eax, ebx
+    movzx ebx, byte[d]
+    shl ebx, 24    
+    or eax, ebx
+    PRINT_UDEC 4, eax
+    xor eax, eax
+    ret
