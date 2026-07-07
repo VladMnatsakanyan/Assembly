@@ -1,0 +1,17 @@
+%include "io.inc"
+section .text
+global CMAIN
+CMAIN:
+mov EBX, 0xffffffff
+again:
+GET_UDEC 4, EAX
+cmp EAX, 0
+jz exit
+cmp EAX, EBX
+ja again
+mov EBX, EAX
+jmp again
+exit:
+PRINT_UDEC 4, EBX
+xor eax, eax
+ret
