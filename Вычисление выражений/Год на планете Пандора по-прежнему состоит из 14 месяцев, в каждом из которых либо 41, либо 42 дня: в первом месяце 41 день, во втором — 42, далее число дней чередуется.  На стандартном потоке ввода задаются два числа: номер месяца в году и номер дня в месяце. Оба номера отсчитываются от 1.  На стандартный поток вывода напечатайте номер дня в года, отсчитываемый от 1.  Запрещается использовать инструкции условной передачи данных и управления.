@@ -1,0 +1,23 @@
+%include "io.inc"
+
+section .bss
+month resd 1
+day resd 1
+section .text
+global main
+main:
+    GET_DEC 4, month
+    GET_DEC 4, day
+    mov eax, dword[month]
+    dec eax 
+    mov ebx, eax
+    shr ebx, 1
+    imul ebx, 83
+    mov ecx, eax
+    and ecx, 1 
+    imul ecx, 41  
+    add ebx, ecx  
+    add ebx, dword[day] 
+    PRINT_DEC 4, ebx
+    xor eax, eax
+    ret
